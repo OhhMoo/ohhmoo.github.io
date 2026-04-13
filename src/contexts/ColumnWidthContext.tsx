@@ -16,7 +16,7 @@ const ColumnWidthContext = createContext<ColumnWidthContextType>({
 });
 
 export function ColumnWidthProvider({ children }: { children: React.ReactNode }) {
-  const [columnWidth, setColumnWidth] = useState(580);
+  const [columnWidth, setColumnWidth] = useState(880);
   return (
     <ColumnWidthContext.Provider value={{ columnWidth, setColumnWidth }}>
       {children}

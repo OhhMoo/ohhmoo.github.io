@@ -52,3 +52,19 @@ a:hover {
 button, input[type="range"] {
   cursor: none;
 }
+
+/* Photo strip scrollbar */
+.photo-strip::-webkit-scrollbar {
+  height: 6px;
+}
+.photo-strip::-webkit-scrollbar-track {
+  background: #e2ddd6;
+  border-radius: 3px;
+}
+.photo-strip::-webkit-scrollbar-thumb {
+  background: #1a56db;
+  border-radius: 3px;
+}
+.photo-strip::-webkit-scrollbar-thumb:hover {
+  background: #1446b8;
+}

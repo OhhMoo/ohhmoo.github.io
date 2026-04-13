@@ -215,25 +215,27 @@ function FeaturedPanel({ project }: { project: (typeof projects)[0] }) {
       {/* Interactive Plotly iframes — rendered below when present */}
       {hasIframes && (
         <div style={{ marginTop: "28px" }}>
-          {/* Section label row */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            marginBottom: "12px",
-          }}>
-            <span style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "10px",
-              color: "#b0aba4",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
+          {/* Section label row — only for interactive HTML embeds, not GIFs */}
+          {project.iframes!.some((f) => !f.src.endsWith(".gif")) && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "12px",
             }}>
-              Interactive · drag to pan · scroll to zoom
-            </span>
-            <div style={{ flex: 1, height: "1px", backgroundColor: "#e2ddd6" }} />
-          </div>
+              <span style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                color: "#b0aba4",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}>
+                Interactive · drag to pan · scroll to zoom
+              </span>
+              <div style={{ flex: 1, height: "1px", backgroundColor: "#e2ddd6" }} />
+            </div>
+          )}
 
           {/* Iframe grid */}
           <div style={{
@@ -257,28 +259,109 @@ function FeaturedPanel({ project }: { project: (typeof projects)[0] }) {
                     {iframe.label}
                   </p>
                 )}
-                {/* Media: gif → <img>, html → <iframe> */}
-                <div style={{
-                  border: "1px solid #e2ddd6",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  backgroundColor: iframe.src.endsWith(".gif") ? "#0d1117" : "#faf8f5",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
-                }}>
-                  {iframe.src.endsWith(".gif") ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={iframe.src}
-                      alt={iframe.label ?? project.title}
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        display: "block",
-                        maxHeight: "460px",
-                        objectFit: "contain",
-                      }}
-                    />
-                  ) : (
+                {/* Media: gif/mov → terminal window, html → <iframe> */}
+                {(iframe.src.endsWith(".gif") || iframe.src.endsWith(".mov") || iframe.src.endsWith(".mp4") || iframe.src.endsWith(".webm")) ? (
+                  <div style={{
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.28)",
+                    border: "1px solid #2a2a2a",
+                  }}>
+                    {/* Top bar */}
+                    <div style={{
+                      backgroundColor: "#1e1e1e",
+                      padding: "10px 14px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      borderBottom: "1px solid #2a2a2a",
+                    }}>
+                      {/* Traffic lights */}
+                      <div style={{ display: "flex", gap: "6px" }}>
+                        <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#ff5f57" }} />
+                        <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#febc2e" }} />
+                        <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#28c840" }} />
+                      </div>
+                      {/* Title */}
+                      <span style={{
+                        flex: 1,
+                        textAlign: "center",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "12px",
+                        color: "#888",
+                        marginRight: "42px",
+                      }}>
+                        speqtro
+                      </span>
+                    </div>
+                    {/* Media */}
+                    {iframe.src.endsWith(".gif") ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={iframe.src}
+                        alt={iframe.label ?? project.title}
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                          maxHeight: "460px",
+                          objectFit: "contain",
+                          backgroundColor: "#0d1117",
+                        }}
+                      />
+                    ) : (
+                      <video
+                        src={iframe.src}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                          maxHeight: "460px",
+                          objectFit: "contain",
+                          backgroundColor: "#0d1117",
+                        }}
+                      />
+                    )}
+                    {/* Bottom bar */}
+                    <div style={{
+                      backgroundColor: "#1e1e1e",
+                      padding: "7px 14px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      borderTop: "1px solid #2a2a2a",
+                    }}>
+                      <span style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        color: "#0d9488",
+                        backgroundColor: "#0d948822",
+                        padding: "1px 7px",
+                        borderRadius: "3px",
+                      }}>
+                        v0.1.4
+                      </span>
+                      <span style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        color: "#555",
+                      }}>
+                        21 tools loaded · /help for commands · Ctrl+C to exit
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{
+                    border: "1px solid #e2ddd6",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    backgroundColor: "#faf8f5",
+                    boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+                  }}>
                     <iframe
                       src={iframe.src}
                       style={{
@@ -289,8 +372,8 @@ function FeaturedPanel({ project }: { project: (typeof projects)[0] }) {
                       }}
                       title={iframe.label ?? project.title}
                     />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -308,11 +391,11 @@ export function Projects() {
     sectionRef.current.querySelectorAll(".fade-in").forEach((el) => {
       gsap.from(el, {
         opacity: 0,
-        duration: 0.7,
+        duration: 0.45,
         ease: "power2.out",
         scrollTrigger: {
           trigger: el,
-          start: "top 86%",
+          start: "top 98%",
           toggleActions: "play none none none",
         },
       });

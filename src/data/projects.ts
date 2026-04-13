@@ -29,7 +29,7 @@ export const projects: Project[] = [
     image: "/images/speqtro-logo.png",
     imageFit: "contain",
     iframes: [
-      { src: "/images/speqtro.gif", label: "CLI demo — live terminal session" },
+      { src: "/images/speqtro-demo.mov", label: "CLI demo — live terminal session" },
     ],
   },
   {

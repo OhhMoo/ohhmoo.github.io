@@ -6,6 +6,7 @@ const sections = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Publications", href: "#publications" },
+  { label: "Photos", href: "#photos" },
   { label: "Contact", href: "#contact" },
 ];
 
