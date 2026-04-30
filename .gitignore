@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Large media (regenerable via scripts/download-assets.mjs)
+public/videos/

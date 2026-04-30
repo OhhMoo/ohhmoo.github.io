@@ -1,9 +1,29 @@
+import { Nav } from "@/components/Nav";
+import { HeroGrid } from "@/components/HeroGrid";
+import { WorkSection } from "@/components/WorkSection";
+import { GridRowSection } from "@/components/GridRowSection";
+import { Footer } from "@/components/Footer";
+import { ScrollDownIcon } from "@/components/icons";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
+    <>
+      <Nav />
+
+      <section className="hero">
+        <div className="hero-bg-circle"></div>
+        <HeroGrid />
+      </section>
+
+      <div className="scroll-arrow">
+        <ScrollDownIcon />
+      </div>
+
+      <WorkSection />
+
+      <GridRowSection />
+
+      <Footer />
+    </>
   );
 }
