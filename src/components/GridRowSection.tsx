@@ -71,7 +71,7 @@ export function GridRowSection() {
             <div className="grid-col-ext-bubble">
               Have any advice? Find me on{" "}
               <a
-                href="https://www.linkedin.com/in/georgia-lyu-899349270/"
+                href="https://www.linkedin.com/in/yiqi-yao-michael/"
                 target="_blank"
                 rel="noreferrer"
                 style={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LinkedInIcon, GitHubIcon, EmailIcon } from "./icons";
 
@@ -43,10 +44,20 @@ export function Nav() {
 
   return (
     <nav className={`nav ${hidden ? "nav--hidden" : ""} ${menuOpen ? "menu-open" : ""}`} id="nav">
-      <Link href="/" className="nav-logo">
-        MICHAEL YAO
-        <br />
-        <span style={{ color: "var(--text-2)" }}>RESEARCHER</span>
+      <Link href="/" className="nav-logo" aria-label="Michael Yao — Home">
+        <Image
+          src="/seo/logo.png"
+          alt=""
+          width={36}
+          height={48}
+          className="nav-logo-img"
+          priority
+        />
+        <span className="nav-logo-text">
+          MICHAEL YAO
+          <br />
+          <span style={{ color: "var(--text-2)" }}>RESEARCHER</span>
+        </span>
       </Link>
 
       <div className="nav-center">
@@ -59,7 +70,7 @@ export function Nav() {
       </div>
 
       <div className="nav-icons">
-        <a href="https://www.linkedin.com/in/myao3411/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/yiqi-yao-michael/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
           <LinkedInIcon />
         </a>
         <a href="https://github.com/OhhMoo" target="_blank" rel="noreferrer" aria-label="GitHub">

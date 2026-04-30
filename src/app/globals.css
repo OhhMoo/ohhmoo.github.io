@@ -113,8 +113,20 @@ img { display: block; max-width: 100%; }
   font-weight: 450;
   transition: color 0.2s;
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  line-height: 1.1;
 }
 .nav-logo:hover { color: var(--accent); }
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  transition: transform 0.25s var(--ease);
+}
+.nav-logo:hover .nav-logo-img { transform: translateY(-1px); }
+.nav-logo-text { display: inline-block; }
 
 .nav-center {
   display: flex;

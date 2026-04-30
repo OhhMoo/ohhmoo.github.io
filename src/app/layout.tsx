@@ -32,7 +32,14 @@ export const metadata: Metadata = {
     description: "Chemistry & computer-science student at Harvey Mudd. Atoms and algorithms.",
   },
   icons: {
-    icon: "/seo/favicon.png",
+    icon: [
+      { url: "/seo/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/seo/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/seo/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/seo/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/seo/apple-touch-icon.png",
+    shortcut: "/seo/favicon-32.png",
   },
 };
 
