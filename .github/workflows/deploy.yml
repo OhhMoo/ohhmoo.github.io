@@ -31,10 +31,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # The site is deployed at https://ohhmoo.github.io/michaelyao/, so
-          # all assets need this prefix. Override via repo Variables if you
-          # ever rename the repo.
-          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || '/michaelyao' }}
+          # Site lives on the apex custom domain michaelyao.site, so no basePath.
+          # Override via repo Variables if you ever switch back to project-site routing.
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
 
       - uses: actions/configure-pages@v5
 
